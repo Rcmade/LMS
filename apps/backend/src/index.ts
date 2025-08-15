@@ -28,7 +28,11 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000","https://lms.rcmade.me"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://lms.rcmade.me",
+    ],
   })
 );
 app.use(cookieParser());

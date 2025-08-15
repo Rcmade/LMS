@@ -15,7 +15,7 @@ This platform enables:
 
 - **Frontend**: Next.js, React, TailwindCSS, TypeScript
 - **Backend**: Express.js, Node.js, TypeScript
-- **Database**: PostgreSQL (via Prisma ORM)
+- **Database**: Mongodb (via Prisma ORM)
 - **Validation**: Zod
 - **Monorepo Tooling**: Turborepo, pnpm
 - **Deployment**: AWS EC2 (Ubuntu), Nginx, PM2

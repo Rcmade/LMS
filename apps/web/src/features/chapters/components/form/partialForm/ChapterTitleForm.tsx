@@ -16,7 +16,7 @@ import useEditChapterForm, {
 } from "../../../hooks/useEditChapterForm";
 
 export const ChapterTitleForm = ({ initialData }: PartialChapterFormProps) => {
-  // console.log({ initialData });
+  // console.error({ initialData });
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);

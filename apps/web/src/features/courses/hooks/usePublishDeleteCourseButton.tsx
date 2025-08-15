@@ -5,6 +5,7 @@ import { api, getReadableErrorMessage } from "@/lib/apiUtils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { DeleteCourseApiT, UnPublishCourseApiT } from "@workspace/types";
 import type { AxiosResponse } from "axios";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 // --- Types ---
@@ -21,6 +22,7 @@ const usePublishDeleteCourseButton = () => {
   const { showAlertDialog, setAlertDialogLoading, closeAlertDialog } =
     useAlertDialog();
   const queryClient = useQueryClient();
+  const { replace } = useRouter();
 
   // --- Publish ---
   const { mutate: publishMutate, isPending: isPublishing } = useMutation<
@@ -62,9 +64,7 @@ const usePublishDeleteCourseButton = () => {
       return data;
     },
     onSuccess: (data) => {
-      if (data?.data?.id) {
-        queryClient.invalidateQueries({ queryKey: ["course", data.data.id] });
-      }
+      queryClient.invalidateQueries({ queryKey: ["course", data.data.id] });
       toast.success(data.message);
     },
     onError: (error) => {
@@ -91,7 +91,9 @@ const usePublishDeleteCourseButton = () => {
         queryClient.invalidateQueries({ queryKey: ["course", data.data.id] });
       }
       toast.success(data.message);
+
       setTimeout(() => closeAlertDialog(), 0);
+      replace("/");
     },
     onError: (error) => {
       toast.error(getReadableErrorMessage(error));

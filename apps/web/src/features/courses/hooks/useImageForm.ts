@@ -84,7 +84,7 @@ export const useUploadImage = (
     mutate(values);
   };
 
-  console.log({ err: form.formState.errors });
+  console.error({ err: form.formState.errors });
   return {
     form,
     onSubmit,

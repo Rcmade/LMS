@@ -100,7 +100,8 @@ export function getReadableErrorMessage(error: unknown): string {
       return "No response from the server. Please check your network.";
     } else {
       // console.error("101: Request error",error)
-      return `Request error: ${error.message}`;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return `Request error: ${(error as any)?.error || error.message}`;
     }
   }
 

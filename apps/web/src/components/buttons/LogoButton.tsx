@@ -10,11 +10,11 @@ const LogoButton = ({
 }: React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
   HTMLAnchorElement
-> & { isShortName?: boolean}) => {
+> & { isShortName?: boolean }) => {
   return (
     <Link
       {...rest}
-      href="/dashboard"
+      href="/"
       className={cn(
         "from-primary to-primary/45 inline-block max-w-full bg-gradient-to-r bg-clip-text text-4xl font-black text-transparent dark:to-purple-700",
         className,

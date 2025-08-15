@@ -7,6 +7,7 @@ import type {
   DeleteCourseBackendT,
   EditCourserBackendT,
   GetCourseByIdBackendT,
+  GetCoursesBackendT,
   PublishCourseBackendT,
   UnPublishCourseBackendT,
 } from "@workspace/types";
@@ -46,7 +47,7 @@ export const createCourse = async (
 
     return res.json(course);
   } catch (error) {
-    console.log("[COURSES]", error);
+    console.error("[COURSES]", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -221,7 +222,7 @@ export const publishCourse = async (
       message: "Your course published successfully!",
     });
   } catch (error) {
-    console.log("[COURSE_ID_PUBLISH]", error);
+    console.error("[COURSE_ID_PUBLISH]", error);
     return res.status(500).json({
       error: "Internal Server Error",
     });
@@ -276,7 +277,7 @@ export const unpublishCourse = async (
       message: "Course unpublished successfully!",
     });
   } catch (error) {
-    console.log("[COURSE_ID_UNPUBLISH]", error);
+    console.error("[COURSE_ID_UNPUBLISH]", error);
     return res.status(500).json({
       error: "Internal Server Error",
     });
@@ -373,6 +374,34 @@ export const deleteCourse = async (
     });
   } catch (error) {
     console.error("[COURSE_DELETE]", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// /courses
+export const getAllCourse = async (
+  req: Request,
+  res: Response<GetCoursesBackendT["res"]>
+) => {
+  try {
+    const { userId } = getAuth(req);
+
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const courses = await db.course.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return res.json(courses);
+  } catch (error) {
+    console.error("[GET_ALL_COURSE]", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };

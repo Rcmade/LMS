@@ -48,9 +48,7 @@ const useCreateCourseForm = () => {
         queryKey: ["courses"],
       });
 
-      if ("data" in data) {
-        router.push(`/teacher/courses/c/${data.id}`);
-      }
+      router.push(`/teacher/courses/c/${data.id}`);
     },
     onError: (error) => {
       const err = getReadableErrorMessage(error);

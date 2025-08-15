@@ -88,6 +88,26 @@ export type GetCourseByIdT = {
 
 export type GetCourseByIdBackendT = WithCommonResponse<GetCourseByIdT>;
 
+export type GetCoursesT = {
+  endPointExample: "/courses";
+  method: "GET";
+
+  res: {
+    title: string;
+    description: string | null;
+    categoryId: string | null;
+    price: number | null;
+    id: string;
+    userId: string;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    isPublished: boolean;
+  }[];
+};
+
+export type GetCoursesBackendT = WithCommonResponse<GetCoursesT>;
+
 export type EditCourseApiT = {
   endPointExample: "/courses/c/:courseId";
   method: "PATCH";
@@ -197,8 +217,6 @@ export type DeleteCourseApiT = {
     data: { id: string };
   };
 };
-
-
 
 export type DeleteCourseBackendT = WithCommonResponse<DeleteCourseApiT>;
 
@@ -445,3 +463,290 @@ export type UnPublishChapterApiT = {
 };
 
 export type UnPublishChapterBackendT = WithCommonResponse<UnPublishChapterApiT>;
+
+export type GetCategoriesT = {
+  endPointExample: "/category";
+  method: "GET";
+
+  res: {
+    name: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+};
+
+export type GetCategoriesBackendT = WithCommonResponse<GetCategoriesT>;
+
+export type GetUserCourseProgressT = {
+  endPointExample: "/user/course-progress/c/:courseId";
+  method: "GET";
+  params: {
+    courseId: string;
+  };
+  res: {
+    progress: number;
+  };
+};
+
+export type GetUserCourseProgressBackendT =
+  WithCommonResponse<GetUserCourseProgressT>;
+
+export type GetUserPurchasedCoursesByIdApiT = {
+  endPointExample: "/user/c/:courseId";
+  method: "GET";
+  params: {
+    courseId: string;
+  };
+  res: {
+    progress: number;
+    purchase: {
+      courseId: string;
+      userId: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+  } | null;
+};
+
+export type GetUserPurchasedCoursesByIdBackendT =
+  WithCommonResponse<GetUserPurchasedCoursesByIdApiT>;
+
+export type GetUserCourseT = {
+  endPointExample: "/user/courses";
+  method: "GET";
+  query: { title?: string; categoryId?: string };
+  res: {
+    progress: number | null;
+    category: {
+      name: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+    } | null;
+    chapters: {
+      id: string;
+    }[];
+    purchases: {
+      userId: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      courseId: string;
+    }[];
+    title: string;
+    categoryId: string | null;
+    userId: string;
+    id: string;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    description: string | null;
+    price: number | null;
+    isPublished: boolean;
+  }[];
+};
+
+export type GetUserCourseBackendT = WithCommonResponse<GetUserCourseT>;
+
+export type GetPublicCourseByIdApiT = {
+  endPointExample: "/public/c/:courseId";
+  method: "GET";
+  params: { courseId: string };
+  res:
+    | ({
+        chapters: {
+          id: string;
+          createdAt: Date;
+          updatedAt: Date;
+          title: string;
+          description: string | null;
+          isPublished: boolean;
+          courseId: string;
+          position: number;
+          isFree: boolean;
+        }[];
+      } & {
+        id: string;
+        userId: string;
+        image: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+        title: string;
+        description: string | null;
+        price: number | null;
+        isPublished: boolean;
+        categoryId: string | null;
+      })
+    | null;
+};
+
+export type GetPublicCourseByIdBackendT =
+  WithCommonResponse<GetPublicCourseByIdApiT>;
+
+export type GetChapterInfoByIdApiT = {
+  endPointExample: "/chapter/c/:courseId/c/:chapterId";
+  method: "GET";
+  params: { chapterId: string; courseId: string };
+  res: {
+    chapter: {
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      title: string;
+      description: string | null;
+      isPublished: boolean;
+      courseId: string;
+      videoUrl: string | null | undefined;
+      position: number;
+      isFree: boolean;
+    } | null;
+    course: {
+      price: number | null;
+    } | null;
+    muxData: {
+      id: string;
+      chapterId: string;
+      assetId: string;
+      playbackId: string | null;
+    } | null;
+    attachments: {
+      name: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      courseId: string;
+      url: string;
+    }[];
+    nextChapter: {
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      title: string;
+      description: string | null;
+      isPublished: boolean;
+      courseId: string;
+      videoUrl: string | null;
+      position: number;
+      isFree: boolean;
+    } | null;
+    userProgress: {
+      chapterId: string;
+      userId: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      isCompleted: boolean;
+    } | null;
+    purchase: {
+      courseId: string;
+      userId: string;
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+    } | null;
+  };
+};
+
+export type GetChapterInfoBackendT = WithCommonResponse<GetChapterInfoByIdApiT>;
+
+export type CheckoutCourseApiT = {
+  endPointExample: "/checkout/c/:courseId";
+  method: "POST";
+  params: { courseId: string };
+  res: {
+    message: string;
+    courseId: string;
+  };
+};
+
+export type CheckoutCourseBackendT = WithCommonResponse<CheckoutCourseApiT>;
+
+export type GetDashboardCoursesApiT = {
+  endPointExample: "/user/courses/dashboard";
+  method: "GET";
+  res: {
+    completedCourses: {
+      progress: number;
+      category: {
+        name: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+      } | null;
+      chapters: {
+        courseId: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        title: string;
+        description: string | null;
+        isPublished: boolean;
+        videoUrl: string | null;
+        position: number;
+        isFree: boolean;
+      }[];
+      userId: string;
+      id: string;
+      image: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      title: string;
+      description: string | null;
+      price: number | null;
+      isPublished: boolean;
+      categoryId: string | null;
+    }[];
+    coursesInProgress: {
+      progress: number;
+      category: {
+        name: string;
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+      } | null;
+      chapters: {
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        courseId: string;
+        isPublished: boolean;
+        title: string;
+        description: string | null;
+        videoUrl: string | null;
+        position: number;
+        isFree: boolean;
+      }[];
+      userId: string;
+      id: string;
+      image: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      isPublished: boolean;
+      title: string;
+      description: string | null;
+      price: number | null;
+      categoryId: string | null;
+    }[];
+  };
+};
+
+export type GetDashboardCoursesBackendT =
+  WithCommonResponse<GetDashboardCoursesApiT>;
+
+export type GetTeacherAnalyticsApiT = {
+  endPointExample: "/user/analytics";
+  method: "GET";
+  res: {
+    data: {
+      name: string;
+      total: number;
+    }[];
+    totalRevenue: number;
+    totalSales: number;
+  };
+};
+
+export type GetTeacherAnalyticsBackendT =
+  WithCommonResponse<GetTeacherAnalyticsApiT>;

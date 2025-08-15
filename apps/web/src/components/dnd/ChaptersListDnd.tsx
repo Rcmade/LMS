@@ -71,7 +71,7 @@ export const ChaptersListDnd = ({
               >
                 {(provided) => (
                   <div
-                    className={`mb-4 flex items-center gap-x-2 rounded-md border text-sm ${chapter.isPublished && "border-blue-200 bg-blue-100 text-blue-700"} dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 dark:${chapter.isPublished && "border-blue-600 bg-blue-800 text-blue-300"} `}
+                    className={`mb-4 flex items-center gap-x-2 rounded-md border text-sm`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                   >
@@ -84,9 +84,7 @@ export const ChaptersListDnd = ({
                     {chapter.title}
                     <div className="ml-auto flex items-center gap-x-2 pr-2">
                       {chapter.isFree && <Badge>Free</Badge>}
-                      <Badge
-                        className={``}
-                      >
+                      <Badge className={``}>
                         {chapter.isPublished ? "Published" : "Draft"}
                       </Badge>
                       <Pencil

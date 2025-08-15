@@ -6,7 +6,7 @@ import {
   reorderChapters,
   unpublishChapter,
   updateChapter
-} from "@/controllers/chaptersController";
+} from "@/controllers/teacherController/chaptersController";
 import { Router, type Router as ExpressRouter } from "express";
 
 const chapterRoutes: ExpressRouter = Router();

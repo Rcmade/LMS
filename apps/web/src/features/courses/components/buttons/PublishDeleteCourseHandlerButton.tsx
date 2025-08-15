@@ -41,7 +41,7 @@ export const PublishDeleteCourseHandlerButton = ({
       </Button>
       <Button
         onClick={() => onDelete({ courseId })}
-        disabled={disabled || isLoading}
+        disabled={isLoading}
         spinner={isDeleting}
       >
         <Trash className="h-4 w-4" />

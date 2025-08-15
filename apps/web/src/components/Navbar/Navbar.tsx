@@ -2,19 +2,21 @@
 
 import useIsPlayerPage from "@//hooks/useIsPlayerPage";
 import useIsTeacher from "@//hooks/useIsTeacher";
+import useIsSearchPage from "@/hooks/useIsSearchPage";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "@workspace/ui/components/button";
-import { Input } from "@workspace/ui/components/input";
 import { useSidebar } from "@workspace/ui/components/sidebar";
-import { LogOut, Menu, Search } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import Link from "next/link";
 import LogoButton from "../buttons/LogoButton";
 import { ThemeButton } from "../buttons/ThemeButton";
+import { SearchInput } from "../inputs/SearchInputs";
 
 const Navbar = () => {
   const isTeacherPage = useIsTeacher();
-  const { toggleSidebar, open } = useSidebar();
   const isPlayerPage = useIsPlayerPage();
+  const isSearchPage = useIsSearchPage();
+  const { toggleSidebar, open } = useSidebar();
   const isTeacher = true; //TODO
   return (
     <div className="sticky top-0 mb-7 flex w-full items-center justify-between px-2 py-2 backdrop-blur-sm md:px-3 lg:px-4">
@@ -23,17 +25,16 @@ const Navbar = () => {
         <Button onClick={toggleSidebar} size="icon" variant={"ghost"}>
           <Menu />
         </Button>
-        <div className="overflow-hidden">
+        <div className={`&& overflow-hidden ${open && "h-0 w-0"}`}>
           <LogoButton
-            className={`${open ? "h-0 w-0 opacity-0" : ""} transition-all duration-1000`}
+            className={`${open ? "opacity-0" : ""} transition-all duration-1000`}
           />
         </div>
-        <div className="relative bg-primary-foreground rounded-md">
-          <Input className="pl-10 " />
-          <div className="pointer-events-non absolute inset-y-0 left-0 flex items-center pl-3">
-            <Search className="" size={20} />
+        {isSearchPage && (
+          <div className="hidden md:block">
+            <SearchInput />
           </div>
-        </div>
+        )}
       </div>
 
       {/* RIGHT SIDE */}

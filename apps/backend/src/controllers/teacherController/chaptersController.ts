@@ -149,7 +149,7 @@ export const getChapterById = async (
 
     return res.json(chapter);
   } catch (error) {
-    console.log("[Chapter Get]", error);
+    console.error("[Chapter Get]", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

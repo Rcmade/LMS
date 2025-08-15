@@ -1,7 +1,6 @@
 "use client";
 
 import { Lock } from "lucide-react";
-import { useState } from "react";
 
 interface VideoPlayerProps {
   playbackId?: string | null;
@@ -15,12 +14,12 @@ interface VideoPlayerProps {
 }
 
 export const VideoPlayer = ({
-  playbackId,
+  // playbackId,
   isLocked,
-  title,
+  // title,
   videoUrl,
 }: VideoPlayerProps) => {
-  const [isReady, setIsReady] = useState(false);
+  // const [isReady, setIsReady] = useState(false);
 
   // const onEnd = async () => {
   //   try {

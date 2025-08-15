@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { AlertDialog } from "@/components/alert/AlertDialog";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@workspace/ui/globals.css";
+import { Suspense } from "react";
 import { Toaster } from "sonner";
 import QueryProvider from "../providers/QueryProvider";
 import ThemeProvider from "../providers/ThemeProvider";
@@ -30,7 +31,9 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <QueryProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            <Suspense>
+              <ThemeProvider>{children}</ThemeProvider>
+            </Suspense>
           </QueryProvider>
         </ClerkProvider>
         <AlertDialog />

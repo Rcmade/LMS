@@ -1,0 +1,14 @@
+{
+  "name": "@workspace/types",
+  "version": "1.0.0",
+  "main": "dist/index.d.ts",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/oidc-provider": "^9.1.1",
+    "typescript": "^5.8.3",
+    "@workspace/zod-validator": "workspace:*"
+  }
+}

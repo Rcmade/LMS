@@ -1,3 +1,4 @@
+import useIsTeacher from "@//hooks/useIsTeacher";
 import { SidebarMenuButton } from "@workspace/ui/components/sidebar";
 import { cn } from "@workspace/ui/lib/utils";
 import Link from "next/link";
@@ -5,11 +6,15 @@ import { usePathname } from "next/navigation";
 import { sidebarContent } from "./SidebarContent";
 
 const DashboardSidebarNav = () => {
-  const pathname = usePathname();
+  const pathname  = usePathname()
+  const isTeacher = useIsTeacher();
+  const routes = isTeacher
+    ? sidebarContent.teacherRoutes
+    : sidebarContent.studentRoutes;
 
   return (
     <div className="flex flex-col gap-2 px-1.5 py-4">
-      {sidebarContent.map((item) => (
+      {routes.map((item) => (
         <SidebarMenuButton
           key={`top-nav_${item.label}`}
           tooltip={item.label}

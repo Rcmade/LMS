@@ -4,8 +4,9 @@ export {
   enum as enum_,
   object,
   preprocess,
+  prettifyError,
   string,
   url
-} from "zod/v4";
-export type { z, ZodError, ZodIssue, ZodType } from "zod/v4";
+} from "zod";
+export type { z, ZodError, ZodIssue, ZodType } from "zod";
 

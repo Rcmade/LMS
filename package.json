@@ -7,7 +7,8 @@
     "dev": "turbo dev",
     "start": "turbo start",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "find . \\( -type d \\( -name \"node_modules\" -o -name \".next\" -o -name \"dist\" \\) -exec rm -rf {} + -o -type f -name \"tsconfig.tsbuildinfo\" -exec rm -f {} + \\)"
   },
   "devDependencies": {
     "@types/node": "^20.19.9",

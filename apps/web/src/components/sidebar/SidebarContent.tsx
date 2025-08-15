@@ -1,40 +1,43 @@
 import {
-  Archive,
-  CircleDollarSign,
-  Clipboard,
+  BarChart,
+  Compass,
   Layout,
-  SlidersHorizontal,
-  User,
+  List,
+  Users
 } from "lucide-react";
-export const sidebarContent = [
+
+export const studentRoutes = [
   {
-    href: "/dashboard",
     icon: Layout,
     label: "Dashboard",
+    href: "/",
   },
   {
-    href: "/inventory",
-    icon: Archive,
-    label: "Inventory",
+    icon: Compass,
+    label: "Browse",
+    href: "/search",
+  },
+] as const;
+
+export const teacherRoutes = [
+  {
+    icon: List,
+    label: "Courses",
+    href: "/teacher/courses",
   },
   {
-    href: "/products",
-    icon: Clipboard,
-    label: "Products",
+    icon: BarChart,
+    label: "Analytics",
+    href: "/teacher/analytics",
   },
   {
-    href: "/users",
-    icon: User,
-    label: "Users",
+    icon: Users,
+    label: "Manage Users",
+    href: "/teacher/users",
   },
-  {
-    href: "/settings",
-    icon: SlidersHorizontal,
-    label: "Settings",
-  },
-  {
-    href: "/expenses",
-    icon: CircleDollarSign,
-    label: "Expenses",
-  },
-];
+] as const;
+
+export const sidebarContent = {
+  teacherRoutes,
+  studentRoutes,
+} as const;

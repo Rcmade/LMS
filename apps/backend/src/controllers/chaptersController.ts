@@ -155,7 +155,7 @@ export const getChapterById = async (
 };
 
 /**
- * DELETE /api/chapters/:chapterId
+ * DELETE /api/chapters/c/:courseId/c/:chapterId
  */
 export const deleteChapter = async (
   req: Request<DeleteChapterBackendT["params"]>,

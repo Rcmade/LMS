@@ -3,9 +3,9 @@ import { IconBadge } from "@//components/badge/IconBadge";
 import { DescriptionForm } from "@//features/courses/components/form/partialFormSections/DescriptionForm";
 import { TitleForm } from "@//features/courses/components/form/partialFormSections/TitleForm";
 import { Banner } from "@//features/courses/components/sections/Banner";
-import { CourseActions } from "@//features/courses/components/sections/CourseActions";
 import useGetCourseById from "@//features/courses/hooks/useGetCourseById";
 import useCourseId from "@//hooks/useCourseId";
+import { PublishDeleteCourseHandlerButton } from "@/features/courses/components/buttons/PublishDeleteCourseHandlerButton";
 import { CategoryForm } from "@/features/courses/components/form/partialFormSections/CategoryForm";
 import ChaptersForm from "@/features/courses/components/form/partialFormSections/ChaptersForm";
 import { ImageForm } from "@/features/courses/components/form/partialFormSections/ImageForm";
@@ -65,7 +65,7 @@ const CourseIdPage = () => {
             </span>
           </div>
           {courseId && (
-            <CourseActions
+            <PublishDeleteCourseHandlerButton
               disabled={!isComplete}
               courseId={courseId}
               isPublished={course.isPublished}

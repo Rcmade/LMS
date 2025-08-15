@@ -133,6 +133,75 @@ export type UploadCourseImageApiT = {
 export type UploadCourseImageBackendT =
   WithCommonResponse<UploadCourseImageApiT>;
 
+export type PublishCourseApiT = {
+  endPointExample: "/courses/c/:courseId/publish";
+  method: "PATCH";
+  params: {
+    courseId: string;
+  };
+  req: {};
+  res: {
+    message: string;
+    data: {
+      title: string;
+      description: string | null;
+      categoryId: string | null;
+      price: number | null;
+      userId: string;
+      id: string;
+      image: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      isPublished: boolean;
+    };
+  };
+};
+
+export type PublishCourseBackendT = WithCommonResponse<PublishCourseApiT>;
+
+export type UnPublishCourseApiT = {
+  endPointExample: "/courses/c/:courseId/unpublish";
+  method: "PATCH";
+  params: {
+    courseId: string;
+  };
+  req: {};
+  res: {
+    message: string;
+    data: {
+      title: string;
+      description: string | null;
+      categoryId: string | null;
+      price: number | null;
+      userId: string;
+      id: string;
+      image: string | null;
+      createdAt: Date;
+      updatedAt: Date;
+      isPublished: boolean;
+    };
+  };
+};
+
+export type UnPublishCourseBackendT = WithCommonResponse<UnPublishCourseApiT>;
+
+export type DeleteCourseApiT = {
+  endPointExample: " /courses/c/:courseId";
+  method: "DELETE";
+  params: {
+    courseId: string;
+  };
+  req: {};
+  res: {
+    message: string;
+    data: { id: string };
+  };
+};
+
+
+
+export type DeleteCourseBackendT = WithCommonResponse<DeleteCourseApiT>;
+
 export type CreateChapterApiT = {
   endPointExample: "/chapters/c/:courseId";
   method: "POST";

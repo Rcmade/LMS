@@ -17,6 +17,6 @@ chapterRoutes.get("/c/:courseId/c/:chapterId", getChapterById);
 chapterRoutes.patch("/c/:courseId/c/:chapterId", updateChapter);
 chapterRoutes.patch("/c/:courseId/c/:chapterId/publish", publishChapter);
 chapterRoutes.patch("/c/:courseId/c/:chapterId/unpublish", unpublishChapter);
-chapterRoutes.patch("/c/:courseId/c/:chapterId", deleteChapter);
+chapterRoutes.delete("/c/:courseId/c/:chapterId", deleteChapter);
 
 export default chapterRoutes;

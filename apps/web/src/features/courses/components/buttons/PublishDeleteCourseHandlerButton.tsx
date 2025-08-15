@@ -2,21 +2,19 @@
 
 import { Button } from "@workspace/ui/components/button";
 import { Trash } from "lucide-react";
-import usePublishDeleteChapterButton from "../../hooks/usePublishDeleteChapterButton";
+import usePublishDeleteCourseButton from "../../hooks/usePublishDeleteCourseButton";
 
-interface ChapterActionsProps {
+interface CourseActionsProps {
   disabled: boolean;
   courseId: string;
-  chapterId: string;
   isPublished: boolean;
 }
 
-export const PublishDeleteChapterHandlerButton = ({
+export const PublishDeleteCourseHandlerButton = ({
   disabled,
   courseId,
-  chapterId,
   isPublished,
-}: ChapterActionsProps) => {
+}: CourseActionsProps) => {
   const {
     onPublishToggle,
     onDelete,
@@ -24,10 +22,10 @@ export const PublishDeleteChapterHandlerButton = ({
     isLoading,
     isPublishing,
     isUnPublishing,
-  } = usePublishDeleteChapterButton();
+  } = usePublishDeleteCourseButton();
 
   const handlePublishClick = () => {
-    onPublishToggle({ isPublished, courseId, chapterId });
+    onPublishToggle({ isPublished, courseId });
   };
 
   return (
@@ -42,8 +40,8 @@ export const PublishDeleteChapterHandlerButton = ({
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
       <Button
-        onClick={() => onDelete({ courseId, chapterId })}
-        disabled={isLoading}
+        onClick={() => onDelete({ courseId })}
+        disabled={disabled || isLoading}
         spinner={isDeleting}
       >
         <Trash className="h-4 w-4" />
